@@ -1,6 +1,7 @@
 # Ren Memory Allocator
 
-The Ren Memory Allocator is a simple memory allocation library implemented in C. It provides functions to allocate and manage memory chunks with alignment support.
+The Ren Memory Allocator is a s
+stb-style library implemented in C. It provides functions to allocate and manage memory chunks with alignment support.
 
 ## Table of Contents
 
