@@ -59,21 +59,26 @@ void destroyRen(Ren* ren) {
 }
 
 
-void* allocRen(Ren* ren, size_t size, size_t alignment) { 
-    rAssert(ren && size > 0 && alignment > 0, "Invalid arguments in allocRen"); 
-    size_t totalSize = size + alignment - 1; 
-    void* mem = (char*)ren->db + ren->size; 
-    void* alignedMem = (void*)((uintptr_t)(mem + alignment - 1) & ~(alignment - 1)); 
-    
-    ptrdiff_t offset = (char*)alignedMem - (char*)mem;
-    
+
+void* allocRen(Ren* ren, size_t size, size_t alignment) {
+    rAssert(ren && size > 0 && alignment > 0, "Invalid arguments in allocRen");
+    size_t totalSize = size + alignment - 1;
+    void* mem = (char*)ren->db + ren->size;
+    char* charMem = (char*)mem;  // Cast to char* for pointer arithmetic
+
+    uintptr_t uintptrMem = (uintptr_t)(charMem + alignment - 1) & ~(alignment - 1);
+    void* alignedMem = (void*)uintptrMem;
+
+    ptrdiff_t offset = (char*)alignedMem - charMem;
+
     size_t allocatedSize = offset + totalSize;
-    
-    rAssert(ren->size + allocatedSize <= ren->cap, "Memory allocation would exceed capacity"); 
-    
-    ren->size += allocatedSize; 
-    return alignedMem; 
+
+    rAssert(ren->size + allocatedSize <= ren->cap, "Memory allocation would exceed capacity");
+
+    ren->size += allocatedSize;
+    return alignedMem;
 }
+
 
 void dropDown(Ren* ren) {
     if (ren) {
