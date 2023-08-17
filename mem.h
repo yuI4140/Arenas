@@ -1,11 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>  
- 
+#include <stddef.h>   
+
 #ifdef __linux__
 #define LINUX_ALIGNMENT 8
 #endif
-
 
 #ifdef _WIN32
 #define WINDOWS_ALIGNMENT 16
