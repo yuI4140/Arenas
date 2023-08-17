@@ -21,7 +21,7 @@ void rAssert(int condition, const char* message);
 void rPAssert(void *ptr, const char* message);
 Ren* createRen(size_t cap);
 void destroyRen(Ren* ren);
-void* allocRen(Ren* ren, size_t size);
+void* allocRen(Ren* ren, size_t size, size_t alignment);
 void dropDown(Ren* ren);
 
 #ifdef MEM_IMP
