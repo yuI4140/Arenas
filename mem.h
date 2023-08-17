@@ -6,7 +6,7 @@
 #define LINUX_ALIGNMENT 8
 #endif
 
-// Windows
+
 #ifdef _WIN32
 #define WINDOWS_ALIGNMENT 16
 #endif
