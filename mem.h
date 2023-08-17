@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-  
+#include <stdint.h>  
  
 #ifdef __linux__
 #define LINUX_ALIGNMENT 8
