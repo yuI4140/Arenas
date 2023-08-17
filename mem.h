@@ -1,5 +1,15 @@
 #include <stdlib.h>
 #include <stdio.h>
+  
+ 
+#ifdef __linux__
+#define LINUX_ALIGNMENT 8
+#endif
+
+// Windows
+#ifdef _WIN32
+#define WINDOWS_ALIGNMENT 16
+#endif
 
 typedef struct {
     size_t cap;
@@ -48,13 +58,19 @@ void destroyRen(Ren* ren) {
     }
 }
 
-void* allocRen(Ren* ren, size_t size) {
-    rAssert(ren && size > 0, "Invalid arguments in allocRen");
-    rAssert(ren->size + size <= ren->cap, "Memory allocation would exceed capacity");
 
+void* allocRen(Ren* ren, size_t size, size_t alignment) {
+    rAssert(ren && size > 0 && alignment > 0, "Invalid arguments in allocRen");
+    size_t totalSize = size + alignment - 1;
     void* mem = (char*)ren->db + ren->size;
-    ren->size += size;
-    return mem;
+    void* alignedMem = (void*)((uintptr_t)(mem + alignment - 1) & ~(alignment - 1));
+
+    size_t allocatedSize = (char*)alignedMem - (char*)mem + size;
+
+    rAssert(ren->size + allocatedSize <= ren->cap, "Memory allocation would exceed capacity");
+
+    ren->size += allocatedSize;
+    return alignedMem;
 }
 
 void dropDown(Ren* ren) {
