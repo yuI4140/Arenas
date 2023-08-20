@@ -17,8 +17,8 @@ typedef struct {
   void *db;
 } Ren;
 
-void rAssert(int condition, const char *message);
-void rPAssert(void *ptr, const char *message);
+static void rAssert(int condition, const char *message);
+static void rPAssert(void *ptr, const char *message);
 Ren *createRen(size_t cap);
 void destroyRen(Ren *ren);
 void *allocRen(Ren *ren, size_t size, size_t alignment);
@@ -26,20 +26,18 @@ void freeMemInRen(Ren *ren, void *mem);
 void dropDown(Ren *ren);
 
 #ifdef MEM_IMP
-void rAssert(int condition, const char *message) {
+static void rAssert(int condition, const char *message) {
   if (!condition) {
     fprintf(stderr, "Error: %s\n", message);
     exit(EXIT_FAILURE);
   }
 }
-
-void rPAssert(void *ptr, const char *message) {
+static void rPAssert(void *ptr, const char *message) {
   if (!ptr) {
     fprintf(stderr, "Error: %s\n", message);
     exit(EXIT_FAILURE);
   }
 }
-
 Ren *createRen(size_t cap) {
   Ren *ren = (Ren *)malloc(sizeof(Ren));
   rPAssert(ren, "Memory allocation failed for Ren");
