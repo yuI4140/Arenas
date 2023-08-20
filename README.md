@@ -25,9 +25,11 @@ To use the Ren Memory Allocator in your C project, follow these steps:
 3. Use the allocator's functions like `createRen`, `allocRen`, and `destroyRen` to allocate, manage, and deallocate memory.
 
 Example usage:
+- C :
 
 ```c
-#include "ren.h"
+#define MEM_IMP
+#include "mem.h"
 
 int main() {
     Ren* ren = createRen(4096); // Create a Ren allocator with a capacity of 4096 bytes
@@ -42,7 +44,24 @@ int main() {
     return 0;
 }
 ```
-## API
+- C++ :
+```cpp
+#define MEM_IMP
+#include "mem.hpp"
+int main() {
+    Ren ren(1024);
+
+    // Usage example
+    void *mem = ren.alloc(100,8);
+    // Use mem as needed
+
+    ren.dropDown();
+    ren.destroy(mem);
+
+    return 0;
+}
+```
+## C-API
 
 ### `Ren* createRen(size_t cap)`
 
