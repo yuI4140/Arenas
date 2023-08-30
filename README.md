@@ -62,8 +62,8 @@ int main() {
 }
 ```
 ## Doc
-*see* [Doc](https://github.com/yuI4140/Arenas/Doc.md)
+*see* [Doc](Doc.md)
 ## Contributing
-*See* [Contributing](https://github.com/yuI4140/Arenas/Contributing.md)
+*See* [Contributing](Contributing.md)
 ## License
 The Ren Memory Allocator is released under the [MIT License](LICENSE).
