@@ -76,13 +76,6 @@ void *allocRen(Ren *ren, size_t size, size_t alignment) {
   ren->size += allocatedSize;
   return alignedMem;
 }
-void freeMemInRen(Ren *ren, void *mem) {
-  if (ren && mem) {
-    if (mem >= ren->db && mem < (char *)ren->db + ren->size) {
-      free(mem);
-    }
-  }
-}
 void dropDown(Ren *ren) {
   if (ren) {
     ren->size = 0;
