@@ -61,49 +61,9 @@ int main() {
     return 0;
 }
 ```
-## C-API
-
-### `Ren* createRen(size_t cap)`
-
-Creates a new Ren allocator with the specified capacity.
-
-- `cap`: The capacity of the allocator in bytes.
-- Returns a pointer to the created Ren allocator.
-
-### `void* allocRen(Ren* ren, size_t size, size_t alignment)`
-
-Allocates memory from the Ren allocator with the specified size and alignment.
-
-- `ren`: Pointer to the Ren allocator.
-- `size`: The size of memory to allocate in bytes.
-- `alignment`: The desired memory alignment in bytes.
-- Returns a pointer to the allocated memory.
-
-### `void dropDown(Ren* ren)`
-
-Resets the memory usage of the Ren allocator.
-
-- `ren`: Pointer to the Ren allocator.
-
-### `void destroyRen(Ren* ren)`
-
-Deallocates the Ren allocator and its associated memory.
-
-- `ren`: Pointer to the Ren allocator.
-
+## Doc
+*see* [Doc](https://github.com/yuI4140/Arenas/Doc.md)
 ## Contributing
-
-Contributions to the Ren Memory Allocator are welcome! If you'd like to contribute, follow these steps:
-
-1. Fork the repository on GitHub.
-2. Clone your forked repository to your local machine.
-3. Create a new branch for your feature or bug fix.
-4. Make your changes and commit them.
-5. Push the changes to your fork on GitHub.
-6. Create a pull request from your branch to the main repository.
-
-Feel free to open an issue if you encounter any problems or have questions.
-
+*See* [Contributing](https://github.com/yuI4140/Arenas/Contributing.md)
 ## License
-
 The Ren Memory Allocator is released under the [MIT License](LICENSE).
